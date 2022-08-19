@@ -22,13 +22,7 @@ a {
 
 @layer components{
   .thisButton{
-   @apply relative z-[1] overflow-hidden
-    before:bg-opacity-20
-    before:dark:bg-opacity-20
-    before:bg-zinc-800
-    before:dark:bg-zinc-300
-    before:-z-[1]
-    ; 
+   @apply relative; 
   }
 }
 
@@ -40,12 +34,4 @@ a {
   width:100%;
   top:0;
   left:0;
-  transform-origin: right;
-  transform: scale(0,1);
-  transition: transform ease 500ms;
-}
-
-.thisButton:hover:before{
-  transform-origin:left;
-  transform:scale(1,1);
 }
