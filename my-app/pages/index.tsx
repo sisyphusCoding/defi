@@ -16,13 +16,10 @@ import {
   useSyncExternalStore
 } from 'react'
 import Core from 'web3modal'
-import { get } from 'https'
 import { getCDTokensBalance, getEtherBalance, getLPTokensBalance, getReserveOfCDTokens } from '../utils/getAmount'
 import { getAmountOfTokensReceivedFromSwap, swapTokens } from '../utils/swap'
 import { addLiquidity, calculateCD } from '../utils/addLiquidity'
-import { clear } from 'console'
 import { getTokensAfterRemove, removeLiquidity, withRemove } from '../utils/removeLiquidity'
-import { Main } from 'next/document'
 import Image from 'next/image'
 
 
