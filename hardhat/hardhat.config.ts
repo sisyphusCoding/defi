@@ -4,7 +4,7 @@ import * as dotenv from 'dotenv'
 dotenv.config()
 
 
-const ALCHEMY = process.env.ALCHEMY_API_KEY_URL
+const ALCHEMY = process.env.ALCHEMY_API_KEY_URL as string
 const PRIVATE_KEY: string = process.env.PRIVATE_KEY as string
 
 
