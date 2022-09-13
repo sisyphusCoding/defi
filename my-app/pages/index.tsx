@@ -303,7 +303,6 @@ const Home: NextPage = () => {
   }
 
 
-  //round to four decimal places
   const thisRound = (num:any) => {
     return  Math.round(num * 1e4)  / 1e4
     
