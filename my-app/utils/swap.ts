@@ -1,17 +1,19 @@
+import { error } from 'console'
+import exp from 'constants'
 import { Contract, Signer } from 'ethers'
-import { AmdDependency } from 'typescript'
 
 import { EXCHANGE_ADDRESS, EXCHANGE_ABI, TOKEN_ADDRESS, TOKEN_ABI } from '../constants'
 
-
-
-export const getAmountOfTokensRecievedFromSwap = async (
-  _swapAmountWei: any,
-  provider: any,
-  ethSelected: any,
-  ethBalance: any,
-  reservedCD: any
+ 
+export const getAmountOfTokensReceivedFromSwap =  async (
+  _swapAmountWei:any,
+  provider:any,
+  ethSelected:any,
+  ethBalance:any,
+  reservedCD:any
 ) => {
+
+
   const exchangeContract = new Contract(
     EXCHANGE_ADDRESS,
     EXCHANGE_ABI,
@@ -20,33 +22,29 @@ export const getAmountOfTokensRecievedFromSwap = async (
 
   let amountOfTokens
 
-  if (ethSelected) {
+  if(ethSelected) {
     amountOfTokens = await exchangeContract.getAmountOfTokens(
       _swapAmountWei,
       ethBalance,
       reservedCD
     )
-  } else {
+  }else{
     amountOfTokens = await exchangeContract.getAmountOfTokens(
       _swapAmountWei,
       reservedCD,
       ethBalance
     )
   }
-
   return amountOfTokens
-
-
 }
 
 
-
-export const swapTokens = async (
-  signer: any,
-  swapAmountWei: any,
-  tokenToBeRecievedAfterSwap: any,
-  ethSelected: any
-) => {
+export const swapTokens = async ( 
+signer:any,
+swapAmountWei:any,
+tokensToBeReceivedAfterSwap:any,
+ethSelected:any
+) =>{
 
   const exchangeContract = new Contract(
     EXCHANGE_ADDRESS,
@@ -60,28 +58,27 @@ export const swapTokens = async (
     signer
   )
 
-  let tx;
+  let tx
 
-  if (ethSelected) {
+  if(ethSelected){
     tx = await exchangeContract.ethToCryptoDevToken(
-      tokenToBeRecievedAfterSwap, {
-      value: swapAmountWei
-    }
+      tokensToBeReceivedAfterSwap,
+      {
+        value:swapAmountWei
+      }
     )
-  } else {
-    tx = await tokenContract.approve(
+  }else{
+    tx  = await exchangeContract.approve(
       EXCHANGE_ADDRESS,
       swapAmountWei.toString()
-    )
+      )
 
     await tx.wait()
 
     tx = await exchangeContract.cryptoDevTokenToEth(
       swapAmountWei,
-      tokenToBeRecievedAfterSwap
+      tokensToBeReceivedAfterSwap
     )
-
-  }
-
-  await tx.wait()
+    await tx.wait()
+  } 
 }

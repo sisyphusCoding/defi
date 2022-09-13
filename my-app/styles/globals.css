@@ -9,6 +9,13 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'Poppins', sans-serif;
+  
+}
+
+
+.thisNeo{
+  @apply shadow-[inset_5px_5px_15px_#b2b2b5,_inset_-5px_-5px_25px_#f6f6fb]
+    dark:shadow-[inset_5px_5px_15px_#101010,_inset_-5px_-5px_25px_#232328];
 }
 
 a {

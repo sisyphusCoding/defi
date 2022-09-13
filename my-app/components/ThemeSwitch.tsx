@@ -10,8 +10,12 @@ const ThemeSwitch = () => {
   const [dark, setDark] = useState<boolean>(false)
 
   useEffect(() => {
-
-
+      if(localStorage.theme === 'dark'||
+        (!('theme' in  localStorage)) &&
+        window.matchMedia('(prefers-color-schema:dark)').matches){
+        setDark(true)
+    }
+      
   }, [])
 
   useEffect(() => {
